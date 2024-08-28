@@ -1,0 +1,20 @@
+{% for comment in blog.comments.all %}
+    <div class="row border">
+        <div class="col-4">
+            {{comment.author}}
+        </div>
+        <div class="col-8">
+            {{comment.content|safe}}
+        </div>
+        <div class="col-12 text-right">
+            {% if request.user == comment.author %}
+            <form action="{% url 'delete_comment' comment_id=comment.id %}" method="POST" style="float: right;">
+                {% csrf_token %}
+                <button type="submit"  class="btn btn-danger">Delete</button>
+            </form>
+        {% endif %}
+            {{comment.created_at}}
+        </div>
+
+    </div>
+{% endfor %}

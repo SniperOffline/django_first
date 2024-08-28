@@ -1,0 +1,34 @@
+{% extends 'blog/base.html' %}
+
+{% block 'title' %}
+Blog
+{% endblock %}
+
+{% block 'content' %}
+<div>
+    <div><h1>{{blog.title}}</h1></div>
+    <hr>
+    <div><img src="{{blog.poster.url}}" alt=""></div>
+    <hr>
+    <div>{{blog.content|safe}}</div>
+    <hr>
+    <div>
+        <span style="font-size: 20px; font-weight: bold">
+            Muallif: <u>{{blog.author}}</u>
+        </span>
+        <span  style="font-size: 20px; float: right; font-style: italic;">
+            {% if request.user == blog.author %}
+                            <a href="{% url 'delete_blog' blog_id=blog.id %}" class="btn btn-danger">Delete</a>
+                        {% endif %}
+        </span>
+        <span style="font-size: 20px; float: right; font-style: italic;">
+            Yaratilgan sana: {{blog.created_at}}
+        </span>
+    </div>
+</div>
+
+{% include 'blog/comment-form.html' %}
+
+{% include 'blog/blog-comment.html' %}
+
+{% endblock %}

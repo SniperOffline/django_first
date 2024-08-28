@@ -1,0 +1,14 @@
+<form action="{% url 'add-comment' blog_id=blog.id %}" method="post">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label for="comment" class="form-label">Comment </label>
+        <textarea name="comment" id="comment" class="form-control"></textarea>
+    </div>
+    <input type="submit" class="btn btn-warning" value="Create comment" >
+</form>
+<script>
+    tinymce.init({
+        selector: '#comment'
+    })
+</script>

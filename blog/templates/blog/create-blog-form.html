@@ -1,0 +1,42 @@
+{% extends 'blog/base.html' %}
+
+{% block 'title' %}
+Create_Form
+{% endblock %}
+
+{% block 'content' %}
+    <h1>Create Blog</h1>
+    <form action="{% url 'create-blog' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" id="title" class="form-control"  name="title">
+        </div>
+        <div class="mb-3">
+            <label for="poster" class="form-label">Poster</label>
+            <input type="file" id="poster" class="form-control"  name="poster">
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">Content </label>
+            <textarea name="content" id="content" class="form-control" name="content"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="category" class="form-label">Category </label>
+            <select name="category" id="category" class="form-control" name="category">
+                {% for category in categories %}
+                    <option value="{{category.id}}">{{category.title}}</option>
+
+                {% endfor %}
+            </select>
+            
+        </div>
+        <button type="submit" class="btn btn-success" style="float: right;">Save</button>
+
+    </form>
+    <script>
+        tinymce.init({
+            selector: '#content'
+        })
+    </script>
+
+{% endblock %}

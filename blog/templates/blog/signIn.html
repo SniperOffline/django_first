@@ -1,0 +1,21 @@
+{%extends 'blog/base.html' %}
+
+{%block 'title' %}
+signIn
+{%endblock %}
+
+{% block 'content' %}
+<center>
+    <h1>LogIn</h1>
+</center>
+
+<form action="{% url 'signIn'%}" method="POST">
+    {% csrf_token %}
+    <label for="username">Username: </label>
+    <input type="text" class="form-control" id="username" name="username">
+    <label for="password">Password: </label>
+    <input type="password" class="form-control" id="password" name="password">
+    <input type="submit" class="btn btn-warning" value="LogIn" style="float: right; margin-top: 5%;">
+</form>
+
+{% endblock %}

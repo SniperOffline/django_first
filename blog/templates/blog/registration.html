@@ -1,0 +1,29 @@
+{%extends 'blog/base.html' %}
+
+{%block 'title' %}
+registratsiya
+{%endblock %}
+
+{% block 'content' %}
+<center>
+    <h1>REGISTRATSIYA</h1>
+</center>
+
+<form action="{% url 'signUp'%}" method="post">
+    {% csrf_token %}
+    <label for="first_name">Name: </label>
+    <input type="text" class="form-control" id="first_name" name="first_name">
+    <label for="second_name">Surname: </label>
+    <input type="text" class="form-control" id="second_name" name="second_name">
+    <label for="username">Username: </label>
+    <input type="text" class="form-control" id="username" name="username">
+    <label for="email">Email:</label>
+    <input type="email" class="form-control" id="email" name="email">
+    <label for="password">Password: </label>
+    <input type="password" class="form-control" id="password" name="password">
+    <label for="confirm">Confirm password: </label>
+    <input type="password" class="form-control" id="confirm" name="confirm">
+    <input type="submit" class="btn btn-warning" value="Create account" style="float: right; margin-top: 5%;">
+</form>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+
+{% block 'title' %}
+Confirm-delete
+{% endblock %}
+
+{% block 'content' %}
+    <h1 class="text-center">Siz rostan ham ushbu blokni o`chirmoqchimisiz?</h1>
+    <h3 class="text-center">{{blog.title}}</h3>
+    <h4 class="text-center">{{blog.content|safe}}</h4>
+    <form action="{% url 'delete_blog' blog_id=blog.id %}" method="post" class="text-center">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger" >Ha</button>
+        <a href="{% url 'index' %}" class="btn btn-dark">Yoq</a>
+    </form>
+
+{% endblock %}
